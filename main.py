@@ -11,12 +11,11 @@ html_soup = BeautifulSoup(response.text, 'html.parser')
 type(html_soup)
 
 products = html_soup.find_all('loc')
-print(len(products)) #found item count
-#print(products)
+print(len(products))  # found item count
+
 counter = 0
 for i in products:
     counter += 1
-    #print(i.text)
     if counter > 10:
         break
     url2 = i.text
@@ -28,15 +27,15 @@ for i in products:
     name = html_soup2.find('h1').find_all('span')
     fullName = ""
     for i in name:
-        fullName+=i.text
-        fullName+=" "
+        fullName += i.text
+        fullName += " "
     print(fullName)
 
     price = html_soup2.find(attrs={"data-key": "current-price"})
     try:
-      print(price.text)
+        print(price.text)
     except:
-      print ("There is no price!!")
+        print("There is no price!!")
 
 end = time.time()
 print(end - start)
